@@ -10,12 +10,12 @@ app = FastAPI(
     debug=DEBUG
 )
 
-@app.get('/healthy')
+@app.get('/api/healthy')
 def check_healthy():
     return 'Service is running'
 
 
-app.include_router(router=invoice_router, prefix='/invoice')
+app.include_router(router=invoice_router, prefix=f'/api/{API_VERSION}')
 
 
 @app.on_event('startup')

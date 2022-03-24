@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from .views import InvoiceView
 
 
-router = APIRouter()
+router = APIRouter(prefix='/invoice')
 view = InvoiceView()
 
 @router.get(

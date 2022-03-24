@@ -22,8 +22,7 @@ services:
       POSTGRES_USER: '${POSTGRES_USER}'
       POSTGRES_DB: '${POSTGRES_DB}'
       WORKERS: '${WORKERS:-1}'
-    ports:
-      - 8000:8000
+
 
   database:
     image: postgres:13.4-alpine

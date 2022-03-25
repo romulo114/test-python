@@ -10,9 +10,6 @@ ARG GID=1000
 RUN groupadd -g $GID -o $UNAME
 RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
 
-RUN apt-get update
-RUN apt-get -yqq install gunicorn3
-
 USER $UNAME
 CMD /bin/bash
 

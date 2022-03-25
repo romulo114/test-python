@@ -1,7 +1,8 @@
+from libs.database import init_db
 
 async def startup():
-	pass
+    await init_db()
 
 
 async def shutdown():
-	pass
+    pass

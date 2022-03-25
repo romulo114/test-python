@@ -1,21 +1,11 @@
-from fastapi import FastAPI
-from settings import API_VERSION, APP_DESC, APP_TITLE, DEBUG
+from .app import create_app
+from .router import register_routes
 from libs.server import startup, shutdown
-from apps.invoice.router import router as invoice_router
+from libs.depends.register import register_all
 
-app = FastAPI(
-    title=APP_TITLE,
-    description=APP_DESC,
-    version=API_VERSION,
-    debug=DEBUG
-)
-
-@app.get('/api/healthy')
-def check_healthy():
-    return 'Service is running'
-
-
-app.include_router(router=invoice_router, prefix=f'/api/{API_VERSION}')
+register_all()
+app = create_app()
+register_routes(app)
 
 
 @app.on_event('startup')

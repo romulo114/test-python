@@ -10,11 +10,9 @@ engine: AsyncEngine = create_async_engine(
     future=True
 )
 
-db_session = sessionmaker(engine, expire_on_commit=False, autocommit=False, autoflush=False, class_=AsyncSession)
-
+db_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
 Base = declarative_base()
-# Base.query = db_session.query_property()
 
 
 async def init_db():

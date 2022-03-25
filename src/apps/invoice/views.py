@@ -1,4 +1,3 @@
-from typing import List
 from apps.invoice.libs.database.invoice_item import InvoiceItemDB
 from apps.invoice.libs.database.invoice import InvoiceDB
 from .models import Invoice, InvoiceItem

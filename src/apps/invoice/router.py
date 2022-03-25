@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Request, Path, Query
+from fastapi import APIRouter, Request, Path, Query
 from fastapi.responses import JSONResponse
 from .libs.params import InvoiceItemParam, UpdateItemPayload
 from .views import InvoiceView

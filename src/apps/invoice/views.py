@@ -1,6 +1,8 @@
 from typing import List
 from apps.invoice.libs.database.invoice_item import InvoiceItemDB
 from apps.invoice.libs.database.invoice import InvoiceDB
+from sqlalchemy.exc import NoResultFound
+from fastapi.exceptions import HTTPException
 from .models import Invoice, InvoiceItem
 from libs.depends.entry import repo
 
@@ -12,7 +14,6 @@ class InvoiceView:
 
 
     async def get_all_invoices(self):
-
         invoices: List[Invoice] = await self.invoice_db.get_all()
         return {
             'count': len(invoices),
@@ -21,8 +22,11 @@ class InvoiceView:
 
 
     async def get_invoice(self, id: int):
-        invoice: Invoice = await self.invoice_db.get_one(id)
-        return { 'data': invoice.as_dict() }
+        try:
+            invoice: Invoice = await self.invoice_db.get_one(id)
+            return { 'data': invoice.as_dict() }
+        except NoResultFound as ex:
+            raise HTTPException(404, 'Item not found')
 
 
     async def create_invoice(self):

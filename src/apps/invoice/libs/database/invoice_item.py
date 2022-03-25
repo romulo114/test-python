@@ -23,3 +23,11 @@ class InvoiceItemDB:
             amount=amount,
             description=description
         )
+
+
+    async def update(self, id: int, **kwargs):
+        return await self.engine.update_one(InvoiceItem, id, **kwargs)
+
+
+    async def delete(self, id: int):
+        return await self.engine.delete_one(InvoiceItem, id)

@@ -3,7 +3,7 @@ from settings import API_VERSION
 
 
 def register_routes(app: FastAPI):
-    @app.get('/api/healthy')
+    @app.get('/api/healthy', tags=['system'])
     def check_healthy():
         return 'Service is running'
 

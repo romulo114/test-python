@@ -39,7 +39,7 @@ class InvoiceItem(Base):
     __tablename__ = 'invoice_items'
 
     id = Column(Integer, primary_key=True)
-    invoice_id = Column(Integer, ForeignKey('invoices.id'), nullable=False)
+    invoice_id = Column(Integer, ForeignKey('invoices.id', ondelete="CASCADE"), nullable=False)
     units = Column(Integer, nullable=False)
     amount = Column(Numeric, nullable=False)
     description = Column(String, default='')
